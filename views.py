@@ -2,8 +2,8 @@ from flask import Blueprint, render_template
 from flask import request
 import requests
 import os
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
 # Create a blueprint
 main_blueprint = Blueprint('main', __name__)
@@ -13,7 +13,11 @@ def index():
 
     api_key = os.environ.get('UNSPLASH_KEY')
     print(api_key)
-    api_response = requests.get('https://api.unsplash.com/photos/random?client_id=' + api_key)
+    #return 'Hello World'
+    #api_response = requests.get('https://api.unsplash.com/photos/random?client_id=' + api_key)
+
+    # get a photo from unsplash with query 'nature'
+    api_response = requests.get('https://api.unsplash.com/photos/random?query=motivation&client_id=' + api_key)
 
     if api_response.status_code == 200:
         data = api_response.json()
