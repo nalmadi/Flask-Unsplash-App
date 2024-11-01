@@ -8,15 +8,10 @@ import os
 # Create a blueprint
 main_blueprint = Blueprint('main', __name__)
 
-@main_blueprint.route('/')
+@main_blueprint.route('/', methods=['GET', 'POST'])
 def index():
 
     api_key = os.environ.get('UNSPLASH_KEY')
-    print(api_key)
-    #return 'Hello World'
-    #api_response = requests.get('https://api.unsplash.com/photos/random?client_id=' + api_key)
-
-    # get a photo from unsplash with query 'nature'
     api_response = requests.get('https://api.unsplash.com/photos/random?query=motivation&client_id=' + api_key)
 
     if api_response.status_code == 200:
